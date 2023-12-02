@@ -3,13 +3,8 @@ grammar SimpleLang;
 prog : dec+ EOF;
 
 dec
-    : typed_idfr LParen vardec+=typed_idfr (Comma vardec+=typed_idfr)* RParen body | mainFunc
+    : typed_idfr LParen (vardec+=typed_idfr (Comma vardec+=typed_idfr)*)? RParen body
 ;
-
-mainFunc
-    : IntType Main LParen (vardec+=typed_idfr (Comma vardec+=typed_idfr)*)? RParen body
-;
-
 
 typed_idfr
     : type Idfr
@@ -33,14 +28,16 @@ exp
     | LParen exp binop exp RParen                           #BinOpExpr
     | Idfr LParen (args+=exp (Comma args+=exp)*)? RParen    #InvokeExpr
     | block                                                 #BlockExpr
-    | If exp Then block Else block                          #IfExpr
+    | If exp Then block (Else block)?                       #IfExpr
     | While exp Do block                                    #WhileExpr
+    | Repeat block Until exp                                #RepeatExpr
     | Print exp                                             #PrintExpr
     | Space                                                 #SpaceExpr
     | Idfr                                                  #IdExpr
     | IntLit                                                #IntExpr
     | BoolLit                                               #BoolExpr
     | NewLine                                               #NewLineExpr
+    | Skip                                                  #SkipExpr
 ;
 
 binop
@@ -52,6 +49,8 @@ binop
     | Plus            #PlusBinop
     | Minus           #MinusBinop
     | Times           #TimesBinop
+    | Divide          #DivideBinop
+    | And             #AndBinop
 ;
 
 LParen : '(' ;
@@ -66,10 +65,12 @@ Less : '<' ;
 LessEq : '<=' ;
 More: '>';
 MoreEq : '>=';
+And: '&';
 
 Plus : '+' ;
 Times : '*' ;
 Minus : '-' ;
+Divide : '/';
 
 Assign : ':=' ;
 
@@ -83,12 +84,12 @@ While : 'while' ;
 Do : 'do' ;
 Repeat : 'repeat' ;
 Until : 'until' ;
+Skip : 'skip' ;
 
 IntType : 'int' ;
 BoolType : 'bool' ;
 UnitType : 'unit' ;
 
-Main : 'main' ;
 
 BoolLit : 'true' | 'false' ;
 IntLit : '0' | ('-'? [1-9][0-9]*) ;

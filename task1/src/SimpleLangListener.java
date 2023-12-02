@@ -27,16 +27,6 @@ public interface SimpleLangListener extends ParseTreeListener {
 	 */
 	void exitDec(SimpleLangParser.DecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SimpleLangParser#mainFunc}.
-	 * @param ctx the parse tree
-	 */
-	void enterMainFunc(SimpleLangParser.MainFuncContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SimpleLangParser#mainFunc}.
-	 * @param ctx the parse tree
-	 */
-	void exitMainFunc(SimpleLangParser.MainFuncContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SimpleLangParser#typed_idfr}.
 	 * @param ctx the parse tree
 	 */
@@ -161,6 +151,18 @@ public interface SimpleLangListener extends ParseTreeListener {
 	 */
 	void exitWhileExpr(SimpleLangParser.WhileExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code RepeatExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterRepeatExpr(SimpleLangParser.RepeatExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RepeatExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitRepeatExpr(SimpleLangParser.RepeatExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code PrintExpr}
 	 * labeled alternative in {@link SimpleLangParser#exp}.
 	 * @param ctx the parse tree
@@ -232,6 +234,18 @@ public interface SimpleLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNewLineExpr(SimpleLangParser.NewLineExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SkipExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterSkipExpr(SimpleLangParser.SkipExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SkipExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitSkipExpr(SimpleLangParser.SkipExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code EqBinop}
 	 * labeled alternative in {@link SimpleLangParser#binop}.
@@ -328,4 +342,28 @@ public interface SimpleLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTimesBinop(SimpleLangParser.TimesBinopContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DivideBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivideBinop(SimpleLangParser.DivideBinopContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DivideBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivideBinop(SimpleLangParser.DivideBinopContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AndBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndBinop(SimpleLangParser.AndBinopContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AndBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndBinop(SimpleLangParser.AndBinopContext ctx);
 }

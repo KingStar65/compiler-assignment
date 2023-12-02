@@ -22,12 +22,6 @@ public interface SimpleLangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDec(SimpleLangParser.DecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleLangParser#mainFunc}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMainFunc(SimpleLangParser.MainFuncContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SimpleLangParser#typed_idfr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -101,6 +95,13 @@ public interface SimpleLangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileExpr(SimpleLangParser.WhileExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code RepeatExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeatExpr(SimpleLangParser.RepeatExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code PrintExpr}
 	 * labeled alternative in {@link SimpleLangParser#exp}.
 	 * @param ctx the parse tree
@@ -142,6 +143,13 @@ public interface SimpleLangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNewLineExpr(SimpleLangParser.NewLineExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SkipExpr}
+	 * labeled alternative in {@link SimpleLangParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSkipExpr(SimpleLangParser.SkipExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code EqBinop}
 	 * labeled alternative in {@link SimpleLangParser#binop}.
@@ -198,4 +206,18 @@ public interface SimpleLangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTimesBinop(SimpleLangParser.TimesBinopContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DivideBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivideBinop(SimpleLangParser.DivideBinopContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AndBinop}
+	 * labeled alternative in {@link SimpleLangParser#binop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndBinop(SimpleLangParser.AndBinopContext ctx);
 }
